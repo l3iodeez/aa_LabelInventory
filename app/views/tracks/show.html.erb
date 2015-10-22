@@ -18,3 +18,34 @@
     <td><%= ugly_lyrics(@track.lyrics) %></td>
   </tr>
 </table>
+
+<a href="<%= edit_track_url(@track) %>">Edit track info</a>
+
+<h3>Notes</h3>
+<table>
+    <tr>
+      <td>Note text</td>
+      <td>Author</td>
+      <td>Action</td>
+
+    </tr>
+  <%  @track.notes.each do |note| %>
+  <tr>
+    <td><%= note.note_text %></td>
+    <td><%= note.user.email %></td>
+    <td><% if note.user == current_user %>
+      <form action="/notes/<%=note.id %>" method="POST">
+        <%= auth_token %>
+        <input type="hidden" name="note[id]" value="<%= note.id %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+        <% end %></td>
+  </tr>
+  <% end %>
+</table>
+<%= render partial: '/notes/form',
+    locals:{ form_method: "POST",
+             note: Note.new(track_id: @track.id, user_id: current_user.id),
+             submit_text: "Add note",
+             form_action: "#{@track.id}/notes" }  %>

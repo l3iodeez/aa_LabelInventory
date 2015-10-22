@@ -5,12 +5,15 @@ Rails.application.routes.draw do
 
   resources :users
   resources :bands do
-    resources :albums, only: [:new, :index]
+    resources :albums, only: :new
   end
   resources :albums do
-    resources :tracks, only: [:new, :index]
+    resources :tracks, only: :new
   end
-  resources :tracks
+  resources :tracks do
+    resources :notes, only: [:new, :create]
+  end
+  resources :notes, except: [:new, :create]
   resource  :session
 
 

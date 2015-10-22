@@ -1,0 +1,7 @@
+<form action="<%=form_action %>" method='POST'>
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= form_method %>">
+  <label for="note_text">Note:</label>
+    <textarea type="text" id="note_text" name="note[note_text]"> <%= note.note_text %></textarea>
+  <input type="submit" value="<%= submit_text %>">
+</form>
