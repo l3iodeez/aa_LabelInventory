@@ -2,11 +2,23 @@
 <html>
 <head>
   <title>LabelInventory</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% flash[:message].try(:each) do |msg| %>
+  <li><%= p msg %></li>
+<% end %>
+
+<%  if logged_in? %>
+  <a href="<%= root_url %>">Home</a>
+  <form action="/session" method="POST">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Log out">
+  </form>
+<% end %>
+
 
 <%= yield %>
 

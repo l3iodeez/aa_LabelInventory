@@ -1,0 +1,5 @@
+<%= render partial: 'form',
+    locals:{ form_method: "PATCH",
+             track: @track,
+             submit_text: "Update Track",
+             form_action: "/tracks/#{@track.id}" }  %>

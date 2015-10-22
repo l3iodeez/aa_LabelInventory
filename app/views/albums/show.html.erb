@@ -1,0 +1,25 @@
+
+<h2><%= @album.title %> </h2>
+<table>
+  <tr>
+    <td>Band name:</td>
+    <td><a href="<%= band_url(@album.band) %>"><%= @album.band.name %></a></td>
+  </tr>
+  <tr>
+    <td>Venue:</td>
+    <td><%= @album.venue %></td>
+  </tr>
+</table>
+  <th>Track Listing</th>
+<table>
+  <% @album.tracks.each do |track| %>
+    <tr>
+      <li><%= track.title %> - <a href="<%= track_url(track) %>">View Track Info</a></li>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+<a href="<%= new_album_track_url(@album) %>">Create new track</a>
+<br>
+<a href="<%= band_url(@album.band) %>">Up to album index</a>

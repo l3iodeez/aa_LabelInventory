@@ -1,0 +1,22 @@
+<form action="<%=form_action %>" method='POST'>
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= form_method %>">
+
+  <label for="album_title">Album Title:</label>
+  <input type="text" id="album_title" name="album[title]" value="<%= album.title %>">
+  <br>
+  <label for="album_band">Band/Artist:</label>
+  <select id="album_band" name="album[band_id]">
+    <% Band.all.each do |band| %>
+      <option value="<%= band.id %>" <%= album.band_id == band.id ? "selected='true'" : nil  %>"><%= band.name %></option>
+    <% end %>
+  </select>
+  <br>
+  <label for="studio">Studio</label>
+  <input type="radio" id="studio" name="album[venue]" value="studio" <%= album.is_studio? ? "checked='true'" : nil %>">
+
+  <label for="live">Live</label>
+  <input type="radio" id="live" name="album[venue]" value="live" <%= album.is_live? ? "checked='true'" : nil  %>">
+  <br>
+  <input type="submit" value="<%= submit_text %>">
+</form>

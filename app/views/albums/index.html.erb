@@ -1,0 +1,4 @@
+<% @albums.each do |album| %>
+  <%= album.title %>  - <a href="<%= album_url(album)%>">View Album Info</a>
+  <br>
+<% end %>
