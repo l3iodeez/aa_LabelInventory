@@ -8,12 +8,20 @@
   <label for="album_band">Band/Artist:</label>
   <select id="album_band" name="album[band_id]">
     <% Band.all.each do |band| %>
-      <option value="<%= band.id %>" <%= album.band_id == band.id ? "selected='true'" : nil  %>"><%= band.name %></option>
+      <option value="<%= band.id %>"
+        <%= album.band_id == band.id ? "selected" : nil  %>">
+        <%= band.name %>
+      </option>
     <% end %>
   </select>
   <br>
   <label for="studio">Studio</label>
-  <input type="radio" id="studio" name="album[venue]" value="studio" <%= album.is_studio? ? "checked='true'" : nil %>">
+  <input
+    type="radio"
+    id="studio"
+    name="album[venue]"
+    value="studio"
+    <%= album.is_studio? ? "checked" : nil %>>
 
   <label for="live">Live</label>
   <input type="radio" id="live" name="album[venue]" value="live" <%= album.is_live? ? "checked='true'" : nil  %>">

@@ -2,6 +2,7 @@ class AlbumsController < ApplicationController
 
   helper_method :is_studio?, :is_live?
   before_action :verify_logged_in
+  default_url_options[:port] = 3000 if Rails.env.production?
 
   def index
     band = params[:band_id] && Band.find(params[:band_id])
@@ -20,8 +21,9 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = Album.new
-    @album.band_id = params[:band_id]
+    @band = params[:band_id]
+    @album = @band.albums.new
+
     render :new
   end
 

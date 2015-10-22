@@ -37,4 +37,9 @@ class User < ActiveRecord::Base
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
+
+  def activate
+    self.activated = true
+    self.save!
+  end
 end

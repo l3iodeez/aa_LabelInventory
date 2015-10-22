@@ -53,11 +53,12 @@ ActiveRecord::Schema.define(version: 20151022203735) do
   add_index "tracks", ["album_id"], name: "index_tracks_on_album_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",            null: false
-    t.string   "password_digest",  null: false
+    t.string   "email",                            null: false
+    t.string   "password_digest",                  null: false
     t.string   "session_token"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "activated",        default: false
     t.string   "activation_token"
   end
 

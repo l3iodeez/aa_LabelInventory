@@ -15,7 +15,7 @@ TEXT
 
 
 5.times do |i|
-  User.create!(email: "user#{i+1}@email.com", password: "password#{i+1}")
+  User.create!(email: "user#{i+1}@email.com", password: "password#{i+1}", activation_token: SecureRandom::urlsafe_base64)
 end
 
 5.times do |i|

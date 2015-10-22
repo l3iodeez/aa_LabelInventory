@@ -29,6 +29,7 @@ class TracksController < ApplicationController
     @track = Track.new(track_params)
 
     if @track.save
+      add_flash("Track created", :message)
       redirect_to track_url(@track)
     else
       flash_errors_now(@track)
@@ -43,9 +44,10 @@ class TracksController < ApplicationController
 
   def update
     @track = Track.find(params[:id])
-    @track.update(track_params)
 
-    if @track.save
+
+    if @track.update(track_params)
+      add_flash("Track updated", :message)
       redirect_to track_url(@track)
     else
       flash_errors_now(@track)
